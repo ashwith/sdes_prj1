@@ -9,7 +9,7 @@ the report and run the code you will need the following:
 3. numpy
 4. scipy
 5. matplotlib
-6. $\LaTeX$ (with the command pdflatex) with packages: graphicx, float, amsmath, hyperref
+6. LaTeX (with the command pdflatex) with packages: graphicx, float, amsmath, hyperref
 7. bibtex
 8. The codec for ogg: libtheora (to generate the animation).
 9. ffmpeg
