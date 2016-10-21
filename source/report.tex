@@ -10,6 +10,7 @@
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage{url}
+\usepackage{hyperref}
 
 
 \title{The van Der Pol Oscillator}
@@ -22,7 +23,7 @@
 \section{Introduction}
 The van der Pol oscillator is an oscillator with nonlinear damping
 governed by the following second-order differential equation
-\eqref{van}
+(\ref{van})
 \cite{scholar}
 
 \begin{equation}
@@ -74,7 +75,7 @@ the oscillations.
 
 It can be seen that when the damping factor is zero, the amplitude
 varies sinusoidally. This is obvious when one notes that setting
-$\epsilon = 0$ reduces \eqref{van} to:
+$\epsilon = 0$ reduces (\ref{van}) to:
 
 \begin{equation}
 \ddot{x} + x = 0
@@ -91,6 +92,11 @@ As the damping factor is increased, there are two changes:
 
 Changing the damping factor doesn't appear to change the amplitude of
 oscillations with the exception of $\epsilon = 0$.
+
+\section{An Animation}
+
+\href{143079021.html}{Click Here} to see an animation that
+shows how the system oscillates with time.
 
 \bibliographystyle{ieeetr}
 \bibliography{bibliography}
