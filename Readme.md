@@ -30,3 +30,5 @@ Clean up the repository by running:
 
 `make clean`
 
+The latest version of this repository is always at:
+https://github.com/ashwith/sdes_prj1
