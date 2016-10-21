@@ -61,12 +61,22 @@ def solve_second_0():
     return (time, solve_van_der_pol(eps, x_init, time))
 
 
-def solve_both_nonzero():
+def solve_both_nonzero_equal():
     """Solves van Der Pol's equation for the case with both initial
-    conditions as non-zero."""
+    conditions as non-zero and equal."""
 
     time = np.arange(0, 40, 100e-3)
     x_init = [1, 1]
+    eps = 0
+    return (time, solve_van_der_pol(eps, x_init, time))
+
+
+def solve_both_nonzero_unequal():
+    """Solves van Der Pol's equation for the case with both initial
+    conditions as non-zero and unequal."""
+
+    time = np.arange(0, 40, 100e-3)
+    x_init = [1.5, 2]
     eps = 0
     return (time, solve_van_der_pol(eps, x_init, time))
 
@@ -143,12 +153,13 @@ def gen_plt(solve_funcs, title, xlabel, ylabel, legend, out_file):
 # Generate plot showing variation in initial conditions.
 def gen_plts_init_cond():
     ode_cases = [solve_no_init, solve_first_0, solve_second_0,
-                 solve_both_nonzero]
+                 solve_both_nonzero_equal, solve_both_nonzero_unequal]
 
     legend = ["Zero initial conditions",
               "Initial Conditions: $x = 0$, $\dot{x} = 1$",
               "Initial Conditions: $x = 1$, $\dot{x} = 0$",
-              "Initial Conditions: $x = 1$, $\dot{x} = 1$"]
+              "Initial Conditions: $x = 1$, $\dot{x} = 1$",
+              "Initial Conditions: $x = 1.5$, $\dot{x} = 2$"]
 
     gen_plt(solve_funcs=ode_cases,
             title="Variation of Initial Conditions",
