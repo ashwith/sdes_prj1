@@ -1,0 +1,99 @@
+% Author: Ashwith Jerome Rego 
+% Email: ashwith@ieee.org
+
+\documentclass[12pt]{article}
+\usepackage{cite}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{url}
+
+
+\title{The van Der Pol Oscillator}
+\author{Ashwith Jerome Rego (143079021)}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+The van der Pol oscillator is an oscillator with nonlinear damping
+governed by the following second-order differential equation
+\eqref{van}
+\cite{scholar}
+
+\begin{equation}
+\ddot{x} - \epsilon \left(1 - x^2\right)\dot{x} + x = 0
+\label{van}
+\end{equation}
+
+In order to solve this numerically, it must be converted to a series
+of first order ordinary differential equations (ODEs):
+
+\begin{align}
+y &= \dot{x}\\
+\dot{y} &= \epsilon \left(1 - x^2\right)\dot{x} - x 
+\end{align}
+
+The following sections discuss the effect of varying the initial
+conditions and the damping factor $\epsilon$
+
+
+\section{Effect of Initial Conditions}
+
+Figure \ref{fig:init} below shows the effect of varying the initial
+conditions.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{../output/van_der_pol_init.eps}
+  \caption{Effect of Initial Conditions}
+  \label{fig:init}
+\end{figure}
+
+From the figure it can be seen that the initial conditions affect the
+amplitude of the oscillations. This is expected since initial
+conditions represent initial energy. It can also be seen that the
+phase is affected. However, the frequency appears to be the same.
+
+\section{Effect of Damping Factor ($\epsilon$)}
+
+Figure \ref{fig:eps} shows how changing the damping factor affects
+the oscillations.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{../output/van_der_pol_eps.eps}
+  \caption{Effect of Damping Factor ($\epsilon$)}
+  \label{fig:eps}
+\end{figure}
+
+
+It can be seen that when the damping factor is zero, the amplitude
+varies sinusoidally. This is obvious when one notes that setting
+$\epsilon = 0$ reduces \eqref{van} to:
+
+\begin{equation}
+\ddot{x} + x = 0
+\end{equation}
+
+which is the equation for simple harmonic motion. \cite{shm}.
+
+As the damping factor is increased, there are two changes:
+
+\begin{enumerate}
+\item The frequency of oscillations decreases.
+\item The waveforms appears to get closer to being a square wave.
+\end{enumerate}
+
+Changing the damping factor doesn't appear to change the amplitude of
+oscillations with the exception of $\epsilon = 0$.
+
+\bibliographystyle{ieeetr}
+\bibliography{bibliography}
+\end{document}
+
+
