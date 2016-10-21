@@ -1,0 +1,8 @@
+# vim swap files
+.*.swp
+
+# pyc
+*.pyc
+
+
+.ipynb_checkpoints
