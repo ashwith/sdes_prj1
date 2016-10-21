@@ -11,7 +11,7 @@ default: output/143079021.html output/van_der_pol_eps.eps output/van_der_pol_ini
 	rm -fr output/van_der_pol_init-eps-converted-to.pdf
 
 output/143079021.html: output/animation.ogg
-	cd source && bash genhtml.bash ../output/14307921.html ../output/animation.ogg
+	cd source && bash genhtml.bash ../output/143079021.html ../output/animation.ogg
 
 output/animation.ogg output/van_der_pol_eps.eps output/van_der_pol_init.eps: source/vanderpol.py
 	$(info Creating images and animation. Please wait.)
