@@ -10,10 +10,10 @@ from scipy.integrate import odeint
 
 def van_der_pol(eps):
     """Returns a function that defines a van Der Pol oscillator's ODE."""
-    def diff_eq(func, time):
+    def diff_eq(x_init, time):
         """The van Der Pol ODE."""
-        var_x = func[0]  # dx/dt
-        var_y = func[1]  # d^2x/dt^2
+        var_x = x_init[0]  # dx/dt
+        var_y = x_init[1]  # d^2x/dt^2
 
         return [var_y, -var_x + eps * (1 - var_x**2) * var_y]
     return diff_eq
