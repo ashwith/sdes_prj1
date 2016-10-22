@@ -4,7 +4,16 @@
 # pyc
 *.pyc
 
-
+# ipython notebook
 .ipynb_checkpoints
 
+# The output direcotry
 output
+
+# latex temporary file
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.log 
