@@ -1,25 +1,44 @@
-default: output/143079021.html output/van_der_pol_eps.eps output/van_der_pol_init.eps
-	cd source && pdflatex -shell-escape report.tex
-	cd source && pdflatex -shell-escape report.tex
-	cd source && bibtex report
-	cd source && pdflatex -shell-escape report.tex
-	cd source && pdflatex -shell-escape report.tex
-	mv source/report.pdf output/143079021.pdf
-	rm -fr source/report.aux source/report.out source/report.log
-	rm -fr source/report.bbl source/report.blg
-	rm -fr output/van_der_pol_eps-eps-converted-to.pdf
-	rm -fr output/van_der_pol_init-eps-converted-to.pdf
+SRC := source
+OUT := output
 
-output/143079021.html: output/animation.ogg
-	cd source && bash genhtml.bash ../output/143079021.html ../output/animation.ogg
+TEXFILE := report.tex
+PYFILE := vanderpol.py
+FIGURES := $(OUT)/van_der_pol_eps.eps $(OUT)/van_der_pol_init.eps 
+WEBPAGE := $(OUT)/143079021.html
+REPORT := $(OUT)/143079021.pdf
 
-output/animation.ogg output/van_der_pol_eps.eps output/van_der_pol_init.eps: source/vanderpol.py
+PY := python3
+VIDEO := $(OUT)/animation.ogg
+TEX := pdflatex -shell-escape
+HTML := bash genhtml.bash
+
+all: $(REPORT)
+
+$(REPORT): $(WEBPAGE) $(FIGURES) $(SRC)/$(TEXFILE)
+	cd $(SRC) && $(TEX) $(TEXFILE)
+	cd $(SRC) && bibtex $(basename $(TEXFILE))
+	cd $(SRC) && $(TEX) $(TEXFILE)
+	cd $(SRC) && $(TEX) $(TEXFILE)
+	mv $(SRC)/report.pdf $(REPORT)
+
+$(WEBPAGE): $(VIDEO)
+	cd $(SRC) && $(HTML) ../$(WEBPAGE) ../$(VIDEO)
+
+$(FIGURES) $(VIDEO): $(SRC)/vanderpol.py
+	mkdir -p $(OUT)
 	$(info Creating images and animation. Please wait.)
-	mkdir output
-	cd source && python3 vanderpol.py
+	cd $(SRC) && $(PY) $(PYFILE)
+	rm -fr *.pyc
 
-clean:
-	rm -fr output
+clean: cleantex
+	rm -fr $(OUT)
 
-test: source/vanderpol.py
-	pytest source/test_vanderpol.py
+cleantex:
+	rm -fr $(SRC)/report.aux $(SRC)/report.out $(SRC)/report.log
+	rm -fr $(SRC)/report.bbl $(SRC)/report.blg
+	rm -fr $(OUT)/van_der_pol_eps-eps-converted-to.pdf
+	rm -fr $(OUT)/van_der_pol_init-eps-converted-to.pdf
+
+test: $(SRC)/vanderpol.py
+	pytest $(SRC)/$(PYFILE)
+	rm -fr *.pyc
