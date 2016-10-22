@@ -20,7 +20,7 @@ $(REPORT): $(WEBPAGE) $(FIGURES) $(SRC)/$(TEXFILE)
 	cd $(SRC) && bibtex $(basename $(TEXFILE))
 	cd $(SRC) && $(TEX) $(TEXFILE)
 	cd $(SRC) && $(TEX) $(TEXFILE)
-	mv $(SRC)/$() $(REPORT)
+	mv $(SRC)/$(TEXFILE:.tex=.pdf) $(REPORT)
 
 $(WEBPAGE): $(VIDEO)
 	cd $(SRC) && $(HTML) ../$(WEBPAGE) ../$(VIDEO)
