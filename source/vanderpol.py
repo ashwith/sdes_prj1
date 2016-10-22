@@ -8,6 +8,18 @@ import numpy as np
 from scipy.integrate import odeint
 
 
+class GlobalPlotParams(object):
+    """ Parameters for plots."""
+    xlabel_font = {}
+    ylabel_font = {}
+    linewidth = 1
+    fig_size = (8.0, 6.0)
+    markers = ['o', '^', 's', 'p', 'x', 'D', '|', '*']
+    colors = ['red', 'blue', 'green', 'black', 'magenta']
+    ftype = 'eps'
+    font_size = 12
+
+
 def van_der_pol(eps):
     """Returns a function that defines a van Der Pol oscillator's ODE."""
     def diff_eq(x_init, time):
@@ -120,19 +132,19 @@ def solve_eps_5():
     return (time, solve_van_der_pol(eps, x_init, time))
 
 
-class GlobalPlotParams:
-    xlabel_font = {}
-    ylabel_font = {}
-    linewidth = 1
-    fig_size = (8.0, 6.0)
-    markers = ['o', '^', 's', 'p', 'x', 'D', '|', '*']
-    colors = ['red', 'blue', 'green', 'black', 'magenta']
-    ftype = 'eps'
-    font_size = 12
-
-
 # Plot generator function.
 def gen_plt(solve_funcs, title, xlabel, ylabel, legend, out_file):
+    """Generates a plot of several functions
+
+    Arguments:
+    solve_funcs - A List of functions to be plotted.
+    title - The title of the plot.
+    xlabel - The x-axis label.
+    ylabel - The y-axis label.
+    legend - A List containing the legend for the plot.
+    out_file - The name of the output file. Check
+    GlobalPlotParams.ftype to set the file type.
+    """
     plt.figure(figsize=GlobalPlotParams.fig_size)
 
     for func, marker, color in zip(solve_funcs,
@@ -152,6 +164,7 @@ def gen_plt(solve_funcs, title, xlabel, ylabel, legend, out_file):
 
 # Generate plot showing variation in initial conditions.
 def gen_plts_init_cond():
+    """Generates the plots of the ODE with initial conditions varied"""
     ode_cases = [solve_no_init, solve_first_0, solve_second_0,
                  solve_both_nonzero_equal, solve_both_nonzero_unequal]
 
@@ -171,6 +184,7 @@ def gen_plts_init_cond():
 
 # Generate plot showing variation in damping factor.
 def gen_plt_eps_var():
+    """Generates the plots of the ODE with damping factor varied"""
     ode_cases = [solve_eps_0, solve_eps_0_1,
                  solve_eps_1, solve_eps_5]
 
@@ -185,11 +199,14 @@ def gen_plt_eps_var():
 
 # Generate plots for all the cases above
 def gen_all_plots():
+    """Generates all plots."""
     gen_plts_init_cond()
     gen_plt_eps_var()
 
 
 def gen_video(filename):
+    """Generates an animation showing the variations of the
+    oscillator's amplitude with time."""
     FFMpegWriter = manimation.writers['ffmpeg']
     metadata = dict(title='van Der Pol Oscillator', artist='Matplotlib',
                     comment="An animation of the van Der Pol\
